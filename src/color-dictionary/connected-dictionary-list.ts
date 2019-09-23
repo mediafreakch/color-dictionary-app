@@ -1,8 +1,8 @@
 import { connect } from 'react-redux'
 
-import { AppState } from '../../store'
-import { ColorDictionaryList } from './list'
-import { removeColor, updateColor } from '../state'
+import { AppState } from '../store'
+import { ColorDictionaryList } from './dictionary-list'
+import { removeColor, updateColor } from './state'
 
 const mapStateToProps = (state: AppState) => ({
   colorDictionary: state.colorDictionary,

@@ -1,5 +1,5 @@
 import { createReducer, createAction, PayloadAction } from 'redux-starter-kit'
-import { Payload } from '../components/form'
+import { Payload } from './form'
 
 export interface ColorDictionaryState {
   [key: string]: string

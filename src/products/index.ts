@@ -1,4 +1,4 @@
-import Manager from './components/manager'
+import Manager from './connected-product-list'
 
 export interface Product {
   name: string

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 
-import { AppState } from '../../store'
-import { ProductList } from './list'
+import { AppState } from '../store'
+import { ProductList } from './product-list'
 
 const mapStateToProps = (state: AppState) => ({
   products: state.products,

@@ -59,6 +59,7 @@ export const Editable = ({ value, onChange }: Props) => {
         onBlur={save}
         onKeyDown={handleKeyDown}
         contentEditable={editing}
+        suppressContentEditableWarning={true}
       >
         {value}
       </span>

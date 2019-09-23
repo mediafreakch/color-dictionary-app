@@ -1,0 +1,26 @@
+.app {
+  text-align: center;
+}
+
+.header {
+  margin-bottom: 20px;
+  padding: 15px;
+  text-align: left;
+}
+
+.logo {
+  width: 150px;
+}
+
+.content {
+  width: 50vmax;
+  margin: 0 auto;
+}
+
+.main {
+  background-image: url(./background.jpg);
+  opacity: 0.8;
+  background-position: center center;
+  background-size: cover;
+  padding: 10px 0;
+}

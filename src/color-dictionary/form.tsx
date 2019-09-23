@@ -9,16 +9,15 @@ export type Payload = {
 
 export type Props = {
   addColorTransform(transform: Payload): void
-  isEdit?: boolean
-  initialFrom?: string
-  initialTo?: string
-  editColor: Function,
 }
 
-export const ColorForm = ({ addColorTransform, isEdit, initialFrom = '', initialTo = '', editColor }: Props) => {
-  const [from, setFrom] = useState(initialFrom)
-  const [to, setTo] = useState(initialTo)
-
+export const ColorForm = ({ addColorTransform }: Props) => {
+  const [from, setFrom] = useState('')
+  const [to, setTo] = useState('')
+  const clear = () => {
+    setFrom('')
+    setTo('')
+  }
   return (
     <form noValidate autoComplete="off">
       <TextField
@@ -27,6 +26,7 @@ export const ColorForm = ({ addColorTransform, isEdit, initialFrom = '', initial
         variant="filled"
         onChange={e => setFrom(e.target.value)}
         value={from}
+        margin="dense"
       />
       <TextField
         id="toColor"
@@ -34,14 +34,18 @@ export const ColorForm = ({ addColorTransform, isEdit, initialFrom = '', initial
         variant="filled"
         onChange={e => setTo(e.target.value)}
         value={to}
+        margin="dense"
       />
-      {isEdit ? (
-        <Button size="small" color="primary" onClick={() => editColor({ from, to })}>Update</Button>
-      ) : (
-        <Button size="small" color="primary" onClick={() => addColorTransform({ from, to })}>
-          Add
-        </Button>
-      )}
+      <Button
+        size="small"
+        color="primary"
+        onClick={() => {
+          addColorTransform({ from, to })
+          clear()
+        }}
+      >
+        Add
+      </Button>
     </form>
   )
 }

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 
 import { ColorForm } from './form'
-import { addColor, updateColor } from '../state'
+import { addColor, updateColor } from './state'
 
 const mapDispatchToProps = {
   addColorTransform: addColor,
