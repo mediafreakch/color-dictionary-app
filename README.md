@@ -63,10 +63,12 @@ completing the exercise using that interpretation
 ## Interpretations and disclaimers
 
 - I assumed it's valid to have a mapping like the following:
+
   | From           | To        |
   | -------------- | --------- |
   | Anthrazite     | Dark Grey |
   | Midnight Black | Dark Grey |
+
 - Due to time restrictions, I only added 3 tests: `form.test.tsx`, `index.test.tsx` and `page.test.tsx`. But they give a glimpse on how I would approach testing
 - `hooks/useForm.js` is in plain Javascript. It's third party code that I didn't transform to Typescript due to time contraints
 - `utils/test-utils.jsx` is plain JSX too. Not transformed to Typescript due to time contraints
