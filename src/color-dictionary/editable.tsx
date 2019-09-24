@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import EditIcon from '@material-ui/icons/EditOutlined'
 
+import './editable.scss'
+
 export type Props = {
   value: string
   onChange: (newValue: string) => void
@@ -51,7 +53,7 @@ export const Editable = ({ value, onChange }: Props) => {
   }
 
   return (
-    <>
+    <div className="editable">
       <span
         ref={domNode => {
           domElm = domNode
@@ -63,7 +65,7 @@ export const Editable = ({ value, onChange }: Props) => {
       >
         {value}
       </span>
-      <EditIcon onClick={toggleEditing} />
-    </>
+      <EditIcon onClick={toggleEditing} className="edit-icon" />
+    </div>
   )
 }

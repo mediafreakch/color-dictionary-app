@@ -10,7 +10,7 @@ export const DictionaryManager = () => (
   <Card>
     <CardContent>
       <Typography variant="h6" align="left">
-        Color Dictionary
+        Dictionary
       </Typography>
       <Typography variant="overline">Create a new mapping:</Typography>
       <Editor />

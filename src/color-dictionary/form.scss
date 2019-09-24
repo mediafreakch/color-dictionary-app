@@ -1,0 +1,9 @@
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  > div {
+    margin-right: 10px;
+  }
+}

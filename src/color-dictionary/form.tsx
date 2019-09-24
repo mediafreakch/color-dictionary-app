@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 
+import './form.scss'
+
 export type Payload = {
   from: string
   to: string
@@ -19,7 +21,7 @@ export const ColorForm = ({ addColorTransform }: Props) => {
     setTo('')
   }
   return (
-    <form noValidate autoComplete="off">
+    <form noValidate autoComplete="off" className="form">
       <TextField
         id="fromColor"
         label="From"
@@ -39,6 +41,7 @@ export const ColorForm = ({ addColorTransform }: Props) => {
       <Button
         size="small"
         color="primary"
+        variant="contained"
         onClick={() => {
           addColorTransform({ from, to })
           clear()
