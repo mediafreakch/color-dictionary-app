@@ -1,5 +1,76 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# Color Dictionary App
+
+## Task given
+
+Our customer needs to manage transformation dictionaries.
+In this specific case dictionaries are used to normalise values in dataset columns.
+Consider the following example of a small dataset of products:
+
+Original Dataset:
+
+| Product           | Color          | Price   |
+| ----------------- | -------------- | ------- |
+| Apple iPhone 6s   | Anthracite     | CHF 769 |
+| Samsung Galaxy S8 | Midnight Black | CHF 569 |
+| Huawei P9         | Mystic Silver  | CHF 272 |
+
+Transformed Dataset:
+
+| Product           | Color     | Price   |
+| ----------------- | --------- | ------- |
+| Apple iPhone 6s   | Dark Grey | CHF 769 |
+| Samsung Galaxy S8 | Black     | CHF 569 |
+| Huawei P9         | Silver    | CHF 272 |
+
+In order to transform the dataset into the desired format we need to create a dictionary like
+this one below:
+
+| From           | To        |
+| -------------- | --------- |
+| Anthrazite     | Dark Grey |
+| Midnight Black | Black     |
+| Mystic Silver  | Silver    |
+
+**Validations**
+
+The created dictionary should not contain any:
+
+- Clones: N identical rows in the dictionary.
+- Forks: N rows in the dictionary with the same ‘Form’ but with different ‘To’’ .
+
+**Functional Requirements**
+
+- Creating and deleting dictionaries
+- Showing available dictionaries in an overview
+- Editing dictionaries (adding, updating and removing rows)
+- Validating the entire dictionary regarding consistency (see above)
+- Validations should be shown as some kind of problem markers. (see Validations here
+  below)
+
+**Technical Requirements**
+
+- Single page web application using React
+- Mobx or Redux or another state management library.
+- Typescript
+- Unit tests
+- CSS
+
+If any of the above items are not clear please state your interpretation and proceed with
+completing the exercise using that interpretation
+
+## Interpretations and disclaimers
+
+- I assumed it's valid to have a mapping like the following:
+  | From           | To        |
+  | -------------- | --------- |
+  | Anthrazite     | Dark Grey |
+  | Midnight Black | Dark Grey |
+- Due to time restrictions, I only added 3 tests: `form.test.tsx`, `index.test.tsx` and `page.test.tsx`. But they give a glimpse on how I would approach testing
+- `hooks/useForm.js` is in plain Javascript. It's third party code that I didn't transform to Typescript due to time contraints
+- `utils/test-utils.jsx` is plain JSX too. Not transformed to Typescript due to time contraints
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -9,36 +80,7 @@ In the project directory, you can run:
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.<br>
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
