@@ -1,7 +1,7 @@
 import React from 'react'
 import Typography from '@material-ui/core/Typography'
 
-import { Manager as ProductManager } from '../products'
+import ProductManager from '../products'
 import { DictionaryManager } from '../color-dictionary'
 
 import logo from './glencore-logo.svg'

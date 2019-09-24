@@ -1,25 +1,26 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 
+import { addColor } from './state'
+
 import './form.scss'
 
-export type Payload = {
-  from: string
-  to: string
-}
-
-export type Props = {
-  addColorTransform(transform: Payload): void
-}
-
-export const ColorForm = ({ addColorTransform }: Props) => {
+const ColorForm = () => {
   const [from, setFrom] = useState('')
   const [to, setTo] = useState('')
   const clear = () => {
     setFrom('')
     setTo('')
   }
+
+  const dispatch = useDispatch()
+  const add = (payload: { from: string; to: string }) => {
+    dispatch(addColor({ from, to }))
+  }
+
   return (
     <form noValidate autoComplete="off" className="form">
       <TextField
@@ -43,7 +44,7 @@ export const ColorForm = ({ addColorTransform }: Props) => {
         color="primary"
         variant="contained"
         onClick={() => {
-          addColorTransform({ from, to })
+          add({ from, to })
           clear()
         }}
       >
@@ -52,3 +53,5 @@ export const ColorForm = ({ addColorTransform }: Props) => {
     </form>
   )
 }
+
+export default ColorForm

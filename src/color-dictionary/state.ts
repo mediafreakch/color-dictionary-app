@@ -1,38 +1,35 @@
-import { createReducer, createAction, PayloadAction } from 'redux-starter-kit'
-import { Payload } from './form'
+import { createSlice, PayloadAction } from 'redux-starter-kit'
+import {
+  ColorDictionaryState,
+  AddColorPayload,
+  UpdateColorPayload,
+  RemoveColorPayload,
+} from './types'
 
-export interface ColorDictionaryState {
-  [key: string]: string
-}
-
-export type Color = string
-
-export type RemoveColorAction = (color: string) => void
-export type EditColorAction = (color: string) => void
-
-export const addColor = createAction('color/add')
-export const updateColor = createAction('color/update')
-export const removeColor = createAction('color/remove')
-
-export const colorDictionaryReducer = createReducer(
-  {
+let initialState: ColorDictionaryState = {
+  dictionary: {
     Anthrazite: 'Dark Grey',
   },
-  {
-    // @ts-ignore
-    [addColor.type]: (state, action) => ({
-      ...state,
-      [action.payload.from]: action.payload.to,
-    }),
-    [updateColor.type]: (state, action) => ({
-      ...state,
-      [action.payload.from]: action.payload.to,
-    }),
-    [removeColor.type]: (state, action) => {
-      const mutatedState = state
-      // @ts-ignore
-      delete mutatedState[action.payload]
-      return mutatedState
+}
+
+const colorDictionarySlice = createSlice({
+  slice: 'colorDictionary',
+  initialState,
+  reducers: {
+    addColor(state, action: PayloadAction<AddColorPayload>) {
+      const { from, to } = action.payload
+      state.dictionary[from] = to // :heart: Immer.js :)
     },
-  }
-)
+    updateColor(state, action: PayloadAction<UpdateColorPayload>) {
+      const { from, to } = action.payload
+      state.dictionary[from] = to // :heart: Immer.js :)
+    },
+    removeColor(state, action: PayloadAction<RemoveColorPayload>) {
+      delete state.dictionary[action.payload.color] // also, thanks to Immer.js :)
+    },
+  },
+})
+
+export const { addColor, updateColor, removeColor } = colorDictionarySlice.actions
+
+export default colorDictionarySlice.reducer

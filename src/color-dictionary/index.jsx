@@ -3,8 +3,8 @@ import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
 
-import ConnectedList from './connected-dictionary-list'
-import Editor from './connected-form'
+import ConnectedList from './dictionary-list'
+import Editor from './form'
 
 export const DictionaryManager = () => (
   <Card>

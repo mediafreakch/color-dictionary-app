@@ -1,18 +1,16 @@
-import { configureStore } from 'redux-starter-kit'
+import { configureStore, combineReducers } from 'redux-starter-kit'
 
-import { colorDictionaryReducer as colorDictionary, ColorDictionaryState } from '../color-dictionary/state'
-import { productsReducer as products, ProductState } from '../products/state'
+import colorDictionaryReducer from '../color-dictionary/state'
+import productsReducer from '../products/state'
 
-export interface AppState {
-  colorDictionary: ColorDictionaryState,
-  products: ProductState,
-}
-
-const store = configureStore({
-  reducer: {
-    colorDictionary,
-    products
-  }
+const rootReducer = combineReducers({
+  colorDictionary: colorDictionaryReducer,
+  products: productsReducer,
 })
 
+const store = configureStore({
+  reducer: rootReducer,
+})
+
+export type RootState = ReturnType<typeof rootReducer>
 export default store

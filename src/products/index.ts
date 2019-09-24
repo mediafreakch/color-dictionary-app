@@ -1,9 +1,3 @@
-import Manager from './connected-product-list'
+import { ProductList } from './product-list'
 
-export interface Product {
-  name: string
-  color: string
-  price: number
-}
-
-export { Manager }
+export default ProductList

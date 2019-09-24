@@ -1,11 +1,8 @@
 import { createReducer } from 'redux-starter-kit'
+import { ProductState } from './types'
 
-import { Product } from '../index'
-
-export type ProductState = Array<Product>
-
-export const productsReducer = createReducer(
-  [
+let initialState: ProductState = {
+  products: [
     {
       name: 'Apple iPhone 6s',
       color: 'Anthrazite',
@@ -15,5 +12,6 @@ export const productsReducer = createReducer(
     { name: 'Huawei P9', color: 'Mystic Silver', price: 272 },
     { name: 'Nokia 8', color: 'Light Silvergrey', price: 420 },
   ],
-  {}
-)
+}
+
+export default createReducer(initialState, {})

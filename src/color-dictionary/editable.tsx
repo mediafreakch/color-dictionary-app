@@ -8,26 +8,35 @@ export type Props = {
   onChange: (newValue: string) => void
 }
 
-export const Editable = ({ value, onChange }: Props) => {
+const Editable = ({ value, onChange }: Props) => {
   let domElm: HTMLElement | null
 
   const [editing, setEditing] = useState(false)
-  const [backup, setBackup] = useState('')
+  const [backup, setBackup] = useState<string | null>('')
 
-  useEffect(() => domElm && domElm.focus(), [editing])
+  useEffect(() => {
+    domElm && domElm.focus()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [editing])
 
   const cancel = () => {
     setEditing(false)
-    domElm.textContent = backup
+    if (domElm) {
+      domElm.textContent = backup
+    }
     setBackup('')
   }
   const edit = () => {
     setEditing(true)
-    setBackup(domElm.textContent)
+    if (domElm) {
+      setBackup(domElm.textContent)
+    }
   }
   const save = () => {
     setEditing(false)
-    onChange(domElm.textContent)
+    if (domElm && domElm.textContent !== null) {
+      onChange(domElm.textContent)
+    }
     setBackup('')
   }
   const handleKeyDown = (e: any) => {
@@ -69,3 +78,5 @@ export const Editable = ({ value, onChange }: Props) => {
     </div>
   )
 }
+
+export default Editable
