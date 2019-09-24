@@ -1,52 +1,95 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 
+import { RootState } from '../store'
+import { ColorDictionary } from './types'
 import { addColor } from './state'
+import useForm from '../hooks/useForm'
 
 import './form.scss'
 
-const ColorForm = () => {
-  const [from, setFrom] = useState('')
-  const [to, setTo] = useState('')
-  const clear = () => {
-    setFrom('')
-    setTo('')
-  }
+type FormState = {
+  from: { value: string; error: string }
+  to: { value: string; error: string }
+}
 
+const ColorForm = () => {
+  const dictionary = useSelector((state: RootState) => state.colorDictionary.dictionary)
   const dispatch = useDispatch()
-  const add = (payload: { from: string; to: string }) => {
+  const add = (from: string, to: string) => {
     dispatch(addColor({ from, to }))
   }
 
+  const schema: FormState = {
+    from: { value: '', error: '' },
+    to: { value: '', error: '' },
+  }
+
+  const validationRules = {
+    from: {
+      required: true,
+      validator: {
+        func: (value: string) => !dictionary[value],
+        error: 'Already exists. Edit the existing instead',
+      },
+    },
+    to: {
+      required: true,
+    },
+  }
+
+  const onSubmit = (state: FormState) => {
+    add(state.from.value, state.to.value)
+    clear()
+  }
+
+  const { state, handleChange, handleSubmit, disable, setState } = useForm(
+    schema,
+    validationRules,
+    onSubmit
+  )
+
+  const clear = () => {
+    setState(schema)
+  }
+
   return (
-    <form noValidate autoComplete="off" className="form">
+    <form noValidate autoComplete="off" className="form" onSubmit={handleSubmit}>
       <TextField
-        id="fromColor"
+        id="from"
         label="From"
         variant="filled"
-        onChange={e => setFrom(e.target.value)}
-        value={from}
+        onChange={handleChange}
+        // @ts-ignore
+        value={state.from.value}
         margin="dense"
+        // @ts-ignore
+        error={!!state.from.error}
+        // @ts-ignore
+        helperText={state.from.error ? state.from.error : 'For example: Midnight Black'}
       />
       <TextField
-        id="toColor"
+        id="to"
         label="To"
         variant="filled"
-        onChange={e => setTo(e.target.value)}
-        value={to}
+        onChange={handleChange}
+        // @ts-ignore
+        value={state.to.value}
         margin="dense"
+        // @ts-ignore
+        error={!!state.to.error}
+        // @ts-ignore
+        helperText={state.to.error ? state.from.error : 'For example: Green'}
       />
       <Button
         size="small"
         color="primary"
         variant="contained"
-        onClick={() => {
-          add({ from, to })
-          clear()
-        }}
+        onClick={handleSubmit}
+        disabled={disable}
       >
         Add
       </Button>
