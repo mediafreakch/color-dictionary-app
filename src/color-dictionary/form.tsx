@@ -82,7 +82,7 @@ const ColorForm = () => {
         // @ts-ignore
         error={!!state.to.error}
         // @ts-ignore
-        helperText={state.to.error ? state.from.error : 'For example: Green'}
+        helperText={state.to.error ? state.to.error : 'For example: Green'}
       />
       <Button
         size="small"
