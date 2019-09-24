@@ -7,9 +7,7 @@ import {
 } from './types'
 
 let initialState: ColorDictionaryState = {
-  dictionary: {
-    Anthrazite: 'Dark Grey',
-  },
+  dictionary: {}
 }
 
 const colorDictionarySlice = createSlice({

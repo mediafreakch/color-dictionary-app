@@ -1,9 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import App from './page';
+import { render } from '../utils/test-utils'
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
-});
+  const { getByText } = render(<App />)
+  getByText('Color Dictionary')
+})

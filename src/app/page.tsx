@@ -2,7 +2,7 @@ import React from 'react'
 import Typography from '@material-ui/core/Typography'
 
 import ProductManager from '../products'
-import { DictionaryManager } from '../color-dictionary'
+import DictionaryManager from '../color-dictionary'
 
 import logo from './glencore-logo.svg'
 import './page.scss'

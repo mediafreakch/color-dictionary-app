@@ -9,7 +9,7 @@ import Editor from './form'
 
 import { RootState } from '../store'
 
-export const DictionaryManager = () => {
+const DictionaryManager = () => {
   const dictionary = useSelector((state: RootState) => state.colorDictionary.dictionary)
   const hasEntries = Object.keys(dictionary).length
 
@@ -31,3 +31,5 @@ export const DictionaryManager = () => {
     </Card>
   )
 }
+
+export default DictionaryManager

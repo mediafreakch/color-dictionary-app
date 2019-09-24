@@ -46,12 +46,12 @@ function useForm(stateSchema = {}, validationSchema = {}, callback) {
     setIsDirty(true)
 
     const name = event.target.id
-    const value = event.target.value
+    const value = event.target.value.trim()
 
     let error = ''
     if (validationSchema[name].required) {
       if (!value) {
-        error = 'This is required field.'
+        error = 'This field is required'
       }
     }
 
