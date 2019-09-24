@@ -90,6 +90,7 @@ const ColorForm = () => {
         variant="contained"
         onClick={handleSubmit}
         disabled={disable}
+        className="submit"
       >
         Add
       </Button>
