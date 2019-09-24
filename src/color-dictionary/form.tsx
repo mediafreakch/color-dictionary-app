@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 
 import { RootState } from '../store'
-import { ColorDictionary } from './types'
 import { addColor } from './state'
 import useForm from '../hooks/useForm'
 
