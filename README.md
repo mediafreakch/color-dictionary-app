@@ -70,13 +70,17 @@ completing the exercise using that interpretation
   | Midnight Black | Dark Grey |
 
 - Due to time restrictions, I only added 3 tests: `form.test.tsx`, `index.test.tsx` and `page.test.tsx`. But they give a glimpse on how I would approach testing
-- `hooks/useForm.js` is in plain Javascript. It's third party code that I didn't transform to Typescript due to time contraints
+- `hooks/useForm.js` is in plain Javascript. It's third party code that I didn't transform to Typescript due to time contraints. That's also why you'll find a lot of `@ts-ignore` in `form.tsx`
 - `utils/test-utils.jsx` is plain JSX too. Not transformed to Typescript due to time contraints
 - For the purpose of the excercise, I preload products and one color mapping into the store already
 
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `npm install`
+
+First and foremost to install all dependencies to run the app.
 
 ### `npm start`
 
