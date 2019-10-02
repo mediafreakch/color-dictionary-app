@@ -45,15 +45,11 @@ const ColorForm = () => {
     clear()
   }
 
-  const { state, handleChange, handleSubmit, disable, setState } = useForm(
+  const { state, handleChange, handleSubmit, disable, clear } = useForm(
     schema,
     validationRules,
     onSubmit
   )
-
-  const clear = () => {
-    setState(schema)
-  }
 
   return (
     <form noValidate autoComplete="off" className="form" onSubmit={handleSubmit}>
@@ -62,12 +58,9 @@ const ColorForm = () => {
         label="From"
         variant="filled"
         onChange={handleChange}
-        // @ts-ignore
         value={state.from.value}
         margin="dense"
-        // @ts-ignore
         error={!!state.from.error}
-        // @ts-ignore
         helperText={state.from.error ? state.from.error : 'For example: Midnight Black'}
       />
       <TextField
@@ -75,12 +68,9 @@ const ColorForm = () => {
         label="To"
         variant="filled"
         onChange={handleChange}
-        // @ts-ignore
         value={state.to.value}
         margin="dense"
-        // @ts-ignore
         error={!!state.to.error}
-        // @ts-ignore
         helperText={state.to.error ? state.to.error : 'For example: Green'}
       />
       <Button

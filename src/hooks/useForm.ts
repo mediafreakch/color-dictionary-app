@@ -1,18 +1,45 @@
 // Inspired from Vince Llauderes https://github.com/llauderesv/react-form-validation
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, FormEvent } from 'react'
 
-function isObject(value) {
-  return value !== null && typeof value === 'object'
+function isObject(anything: any): boolean {
+  return anything !== null && typeof anything === 'object'
 }
 
-function useForm(stateSchema = {}, validationSchema = {}, callback) {
-  const [state, setState] = useState(stateSchema)
+interface StateSchema {
+  [key: string]: any
+}
+
+interface ValidationSchema {
+  [key: string]: {
+    required: boolean
+    validator?: {
+      func: (value: any) => boolean
+      error: string
+    }
+  }
+}
+
+type UseFormHook = {
+  handleChange: (e: FormEvent) => void
+  handleSubmit: (e: FormEvent) => void
+  state: StateSchema
+  disable: boolean
+  clear: () => void
+}
+
+function useForm<T extends StateSchema>(
+  stateSchema: T = {} as T,
+  validationSchema: ValidationSchema = {},
+  callback: (state: T) => void
+): UseFormHook {
+  const [state, setState] = useState<T>(stateSchema)
   const [disable, setDisable] = useState(true)
   const [isDirty, setIsDirty] = useState(false)
 
   // Disable button in initial render.
   useEffect(() => {
     setDisable(true)
+    // eslint-disable-next-line
   }, [])
 
   // For every changed in our state this will be fired
@@ -50,15 +77,15 @@ function useForm(stateSchema = {}, validationSchema = {}, callback) {
 
     let error = ''
     if (validationSchema[name].required) {
-      if (!value || !value.trim()) { 
+      if (!value || !value.trim()) {
         error = 'This field is required'
       }
     }
 
     if (isObject(validationSchema[name].validator)) {
       // Test your defined validation function
-      if (value && !validationSchema[name].validator.func(value)) {
-        error = validationSchema[name].validator.error
+      if (value && !validationSchema[name].validator!.func(value)) {
+        error = validationSchema[name].validator!.error
       }
     }
 
@@ -66,7 +93,8 @@ function useForm(stateSchema = {}, validationSchema = {}, callback) {
       ...prevState,
       [name]: { value, error },
     }))
-  })
+    // eslint-disable-next-line
+  }, [])
 
   // eslint-disable-next-line
   const handleSubmit = useCallback(event => {
@@ -77,9 +105,15 @@ function useForm(stateSchema = {}, validationSchema = {}, callback) {
     if (!validateState()) {
       callback(state)
     }
-  })
+    // eslint-disable-next-line
+  }, [])
 
-  return { handleChange, handleSubmit, state, disable, setState }
+  const clear = useCallback(() => {
+    setState(stateSchema)
+    // eslint-disable-next-line
+  }, [])
+
+  return { handleChange, handleSubmit, state, disable, clear }
 }
 
 export default useForm
