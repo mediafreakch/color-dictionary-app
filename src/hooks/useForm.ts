@@ -68,7 +68,6 @@ function useForm<T extends StateSchema>(
   }, [state, validationSchema])
 
   // Event handler for handling changes in input.
-  // eslint-disable-next-line
   const handleChange = useCallback(event => {
     setIsDirty(true)
 
@@ -96,7 +95,6 @@ function useForm<T extends StateSchema>(
     // eslint-disable-next-line
   }, [])
 
-  // eslint-disable-next-line
   const handleSubmit = useCallback(event => {
     event.preventDefault()
 
