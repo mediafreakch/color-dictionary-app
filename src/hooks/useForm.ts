@@ -87,7 +87,6 @@ function useForm<T extends StateSchema>(
         error = validationSchema[name].validator!.error
       }
     }
-
     setState(prevState => ({
       ...prevState,
       [name]: { value, error },
@@ -95,16 +94,19 @@ function useForm<T extends StateSchema>(
     // eslint-disable-next-line
   }, [])
 
-  const handleSubmit = useCallback(event => {
-    event.preventDefault()
+  const handleSubmit = useCallback(
+    event => {
+      event.preventDefault()
 
-    // Making sure that there's no error in the state
-    // before calling the submit callback function
-    if (!validateState()) {
-      callback(state)
-    }
-    // eslint-disable-next-line
-  }, [])
+      // Making sure that there's no error in the state
+      // before calling the submit callback function
+      if (!validateState()) {
+        callback(state)
+      }
+      // eslint-disable-next-line
+    },
+    [state]
+  )
 
   const clear = useCallback(() => {
     setState(stateSchema)
