@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography'
 import ProductManager from '../products'
 import DictionaryManager from '../color-dictionary'
 
-import logo from './logo.svg'
+import logo from './logo.png'
 import './page.scss'
 
 const App: React.FC = () => {
